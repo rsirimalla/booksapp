@@ -6,33 +6,35 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
+import java.net.InetAddress;
+
+
 
 @RestController
 public class BooksController {
 
 
     private static final Book[] books = {
-        new Book(1L, "Nemesis", "Isaac Asimov"),
-        new Book(2L, "Great Expectations", "Charles Dickens"),
-        new Book(3L, "The Chronicles of Narnia", "C.S. Lewis")
+        new Book(1L, "Nemesis", "hostname1"),
+        new Book(2L, "Great Expectations", "hostname2"),
+        new Book(3L, "The Chronicles of Narnia", "hostname3")
     };
 
-    @GetMapping("/books")
+    @GetMapping("/loans")
     public Book[] books() {
         return books;
     }
 
-    @GetMapping("/books/{id}")
-    public Book book(@PathVariable int id) {
+    @GetMapping("/loans/{loan_id}")
+    public Book book(@PathVariable int loan_id) throws Exception{
         for (Book book : books) {
-            if (book.getId() == id) {
+            if (book.getLoan_id() == loan_id) {
                 return book;
             }
-			
-        } 
-        throw new ResponseStatusException(
-            HttpStatus.NOT_FOUND, "Entity not found"
-        );        
+        }
+        InetAddress inetAddress = InetAddress.getLocalHost();
+        Book book = new Book(9L, "FannieMae", inetAddress.getHostAddress());
+        return book;
     }
 
 }

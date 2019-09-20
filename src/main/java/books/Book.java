@@ -2,26 +2,26 @@ package books;
 
 public class Book {
 
-    private final long id;
-    private final String name;
-    private final String author;
+    private final long loan_id;
+    private final String lender_name;
+    private final String hostname;
 
 
-    public Book(Long id, String name, String author) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
+    public Book(Long loan_id, String lender_name, String hostname) {
+        this.loan_id = loan_id;
+        this.lender_name = lender_name;
+        this.hostname = hostname;
     }
 
-    public long getId() {
-        return this.id;
+    public long getLoan_id() {
+        return this.loan_id;
     }
 
-    public String getName() {
-        return this.name;
+    public String getLender_name() {
+        return this.lender_name;
     }
 
-    public String getAuthor() {
-        return this.author;
+    public String getHostname() {
+        return this.hostname;
     }
 }
